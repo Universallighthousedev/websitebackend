@@ -16,7 +16,7 @@ export class GalleryService {
     return this.galleryRepo.find();
   }
 
-  async findOne(id: number): Promise<Gallery> {
+  async findOne(id: string): Promise<Gallery> {
     const item = await this.galleryRepo.findOne({ where: { id } });
     if (!item) {
       throw new NotFoundException(`Gallery item with ID ${id} not found`);
@@ -29,13 +29,13 @@ export class GalleryService {
     return this.galleryRepo.save(item);
   }
 
-  async update(id: number, data: UpdateGalleryDto): Promise<Gallery> {
+  async update(id: string, data: UpdateGalleryDto): Promise<Gallery> {
     const item = await this.findOne(id);
     Object.assign(item, data);
     return this.galleryRepo.save(item);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     const item = await this.findOne(id);
     await this.galleryRepo.remove(item);
   }

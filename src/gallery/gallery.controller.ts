@@ -6,7 +6,6 @@ import {
   Param,
   Patch,
   Delete,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { GalleryService } from './gallery.service';
 import { CreateGalleryDto } from './dto/create-gallery.dto';
@@ -23,7 +22,7 @@ export class GalleryController {
   }
 
   @Get(':id')
-  getOne(@Param('id', ParseIntPipe) id: number): Promise<Gallery> {
+  getOne(@Param('id') id: string): Promise<Gallery> {
     return this.galleryService.findOne(id);
   }
 
@@ -34,14 +33,14 @@ export class GalleryController {
 
   @Patch(':id')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @Body() data: UpdateGalleryDto,
   ): Promise<Gallery> {
     return this.galleryService.update(id, data);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  remove(@Param('id') id: string): Promise<void> {
     return this.galleryService.remove(id);
   }
 }
