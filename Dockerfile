@@ -7,14 +7,17 @@ WORKDIR /app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install only production dependencies
-RUN npm ci --omit=dev
+# Install all dependencies (including dev dependencies for build)
+RUN npm ci
 
 # Copy the rest of the application files
 COPY . .
 
 # Build the NestJS app
 RUN npm run build
+
+# Remove dev dependencies to reduce image size
+RUN npm prune --omit=dev
 
 # Expose port 3000
 EXPOSE 3000
