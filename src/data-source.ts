@@ -1,6 +1,15 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
-dotenv.config();
+
+// Load environment variables from .env.migration for production migrations
+if (
+  process.env.NODE_ENV === 'production' ||
+  process.env.MIGRATION_ENV === 'production'
+) {
+  dotenv.config({ path: '.env.migration' });
+} else {
+  dotenv.config();
+}
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
