@@ -16,7 +16,7 @@ export class TeamsService {
     return this.teamRepo.find();
   }
 
-  async findOne(id: number): Promise<Team> {
+  async findOne(id: string): Promise<Team> {
     const team = await this.teamRepo.findOne({ where: { id } });
     if (!team) {
       throw new NotFoundException(`Team member with ID ${id} not found`);
@@ -29,13 +29,13 @@ export class TeamsService {
     return this.teamRepo.save(team);
   }
 
-  async update(id: number, data: UpdateTeamDto): Promise<Team> {
+  async update(id: string, data: UpdateTeamDto): Promise<Team> {
     const team = await this.findOne(id);
     Object.assign(team, data);
     return this.teamRepo.save(team);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     const team = await this.findOne(id);
     await this.teamRepo.remove(team);
   }

@@ -1,25 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Team {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   name: string;
 
-  @Column()
+  @Column('text')
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   imageUrl: string;
 
-  @Column()
-  role: string;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @Column()
-  linkedinUrl: string;
-
-  @Column()
-  twitterUrl: string;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
