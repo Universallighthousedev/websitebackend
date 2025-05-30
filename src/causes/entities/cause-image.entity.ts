@@ -3,7 +3,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  CreateDateColumn,
   JoinColumn,
 } from 'typeorm';
 import { Cause } from '../cause.entity';
@@ -27,7 +26,4 @@ export class CauseImage {
   })
   @JoinColumn({ name: 'causeId' })
   cause: Cause;
-
-  @CreateDateColumn()
-  createdAt: Date;
 }
