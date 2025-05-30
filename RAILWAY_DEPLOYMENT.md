@@ -1,5 +1,22 @@
 # Universal Lighthouse Backend - Railway Deployment Guide
 
+## ✅ STATUS: READY FOR DEPLOYMENT
+
+**Last Updated:** May 30, 2025
+
+### 🎉 Critical Issue RESOLVED
+**PROBLEM:** Health endpoint `/api/health` was returning 404 errors during Railway deployment.
+
+**ROOT CAUSE:** `AppController` and `AppService` were not registered in `AppModule`.
+
+**SOLUTION APPLIED:**
+- ✅ Added `AppController` and `AppService` imports to `src/app.module.ts`
+- ✅ Added `controllers: [AppController]` and `providers: [AppService]` to module configuration
+- ✅ Build verified successfully with no compilation errors
+- ✅ Health endpoint now properly registered and accessible
+
+---
+
 ## 🚀 Railway Deployment Instructions
 
 ## ⚠️ CRITICAL: Database Setup Required
