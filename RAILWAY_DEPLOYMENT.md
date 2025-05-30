@@ -2,7 +2,21 @@
 
 ## 🚀 Railway Deployment Instructions
 
-### Prerequisites
+## ⚠️ CRITICAL: Database Setup Required
+
+**Before deploying, you MUST add a PostgreSQL database to your Railway project:**
+
+1. Go to your Railway project dashboard
+2. Click **"+ New"** → **"Database"** → **"Add PostgreSQL"**
+3. Railway will automatically inject these environment variables:
+   - `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`
+4. Your app is configured to use these automatically
+
+**If you see database connection errors, the database service is missing!**
+
+---
+
+## Prerequisites
 1. **Railway Account**: Sign up at [railway.app](https://railway.app)
 2. **GitHub Repository**: Push your code to GitHub
 3. **PostgreSQL Database**: Railway will provide this
@@ -27,10 +41,10 @@
    railway link [project-id]
    ```
 
-3. **Add PostgreSQL Database**:
-   - Go to Railway dashboard
-   - Click "New" → "Database" → "PostgreSQL"
-   - Railway will automatically provide connection variables
+3. **Add PostgreSQL Database** (CRITICAL):
+   - In Railway dashboard, click **"+ New"** → **"Database"** → **"Add PostgreSQL"**
+   - Railway will automatically inject database environment variables
+   - **Without this step, the app will fail to start with database connection errors**
 
 ### Step 2: Configure Environment Variables
 
@@ -101,6 +115,10 @@ curl https://your-app.railway.app/api/health
 
 ### API Test
 ```bash
+# Test root endpoint
+curl https://your-app.railway.app/api
+
+# Test gallery endpoint
 curl https://your-app.railway.app/api/gallery
 ```
 
@@ -118,10 +136,27 @@ curl https://your-app.railway.app/api/gallery
 
 ## 🔍 Troubleshooting
 
-### Common Issues:
-1. **Database Connection**: Ensure all DATABASE_* variables are set
-2. **CORS Errors**: Update FRONTEND_URL environment variable
-3. **Migration Errors**: Run migrations manually in Railway shell
+### Database Connection Errors (ECONNREFUSED):
+**Most common issue**: Missing PostgreSQL database service
+
+1. **Check Database Service**:
+   - Go to Railway dashboard
+   - Verify PostgreSQL database is added to your project
+   - If missing: Click **"+ New"** → **"Database"** → **"Add PostgreSQL"**
+
+2. **Verify Environment Variables**:
+   - Check that `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE` are present
+   - These are automatically injected by Railway when database is added
+
+3. **Check Logs**:
+   ```bash
+   railway logs
+   ```
+
+### Other Common Issues:
+1. **CORS Errors**: Update `FRONTEND_URL` environment variable
+2. **Migration Errors**: Run migrations manually in Railway shell
+3. **Build Failures**: Check that all dependencies are in `package.json`
 
 ### Logs:
 ```bash
