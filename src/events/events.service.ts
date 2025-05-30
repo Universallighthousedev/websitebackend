@@ -25,7 +25,10 @@ export class EventsService {
   }
 
   create(data: CreateEventDto): Promise<Event> {
-    const event = this.eventRepo.create(data as Partial<Event>);
+    const event = this.eventRepo.create({
+      ...data,
+      date: new Date(data.date),
+    });
     return this.eventRepo.save(event);
   }
 

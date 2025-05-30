@@ -31,11 +31,10 @@ export class CausesService {
       const savedCause = await this.causesRepository.save(cause);
 
       if (createCauseDto.images && createCauseDto.images.length > 0) {
-        const images = createCauseDto.images.map((imageDto, index) => {
+        const images = createCauseDto.images.map((imageDto) => {
           const image = new CauseImage();
           image.url = imageDto.url;
           image.alt = imageDto.alt || null;
-          image.order = imageDto.order ?? index;
           image.cause = savedCause;
           return image;
         });
@@ -99,11 +98,10 @@ export class CausesService {
         await this.causeImagesRepository.delete({ cause: { id } });
 
         // Create new images
-        const images = updateCauseDto.images.map((imageDto, index) => {
+        const images = updateCauseDto.images.map((imageDto) => {
           const image = new CauseImage();
           image.url = imageDto.url;
           image.alt = imageDto.alt || null;
-          image.order = imageDto.order ?? index;
           image.cause = cause;
           return image;
         });
