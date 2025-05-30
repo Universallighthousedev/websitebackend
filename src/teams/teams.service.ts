@@ -12,8 +12,16 @@ export class TeamsService {
     private teamRepo: Repository<Team>,
   ) {}
 
-  findAll(): Promise<Team[]> {
-    return this.teamRepo.find();
+  async findAll(): Promise<Team[]> {
+    try {
+      return await this.teamRepo.find();
+    } catch (error) {
+      console.error('Teams findAll error:', error);
+      throw new Error(
+        'Failed to fetch teams: ' +
+          (error instanceof Error ? error.message : 'Unknown error'),
+      );
+    }
   }
 
   async findOne(id: string): Promise<Team> {

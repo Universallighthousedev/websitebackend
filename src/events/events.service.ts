@@ -12,8 +12,16 @@ export class EventsService {
     private eventRepo: Repository<Event>,
   ) {}
 
-  findAll(): Promise<Event[]> {
-    return this.eventRepo.find();
+  async findAll(): Promise<Event[]> {
+    try {
+      return await this.eventRepo.find();
+    } catch (error) {
+      console.error('Events findAll error:', error);
+      throw new Error(
+        'Failed to fetch events: ' +
+          (error instanceof Error ? error.message : 'Unknown error'),
+      );
+    }
   }
 
   async findOne(id: string): Promise<Event> {

@@ -50,13 +50,13 @@ export class CausesService {
 
   async findAll(): Promise<Cause[]> {
     try {
-      return await this.causesRepository.find({
-        order: {
-          createdAt: 'DESC',
-        },
-      });
+      return await this.causesRepository.find();
     } catch (error) {
-      throw new BadRequestException('Failed to fetch causes: ' + error.message);
+      console.error('Causes findAll error:', error);
+      throw new BadRequestException(
+        'Failed to fetch causes: ' +
+          (error instanceof Error ? error.message : 'Unknown error'),
+      );
     }
   }
 
