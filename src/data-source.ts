@@ -1,11 +1,13 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 
-// Load environment variables from .env.migration for production migrations
+// Load environment variables from .env.migration for LOCAL production migrations
+// In Railway, environment variables are automatically available
 if (
-  process.env.NODE_ENV === 'production' ||
-  process.env.MIGRATION_ENV === 'production'
+  process.env.MIGRATION_ENV === 'production' &&
+  !process.env.RAILWAY_ENVIRONMENT
 ) {
+  // Only load .env.migration if running locally (not in Railway)
   dotenv.config({ path: '.env.migration' });
 } else {
   dotenv.config();

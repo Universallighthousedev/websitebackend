@@ -34,8 +34,6 @@ import { Donation } from './donations/donation.entity';
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
         entities: [Cause, CauseImage, Event, Team, Gallery, Donation],
-        migrations: [__dirname + '/migrations/*.{ts,js}'],
-        migrationsRun: configService.get<string>('NODE_ENV') === 'production',
         synchronize: configService.get<string>('NODE_ENV') === 'development',
         ssl:
           configService.get<string>('NODE_ENV') === 'production'
