@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { CausesModule } from './causes/causes.module';
 import { Cause } from './causes/cause.entity';
 import { CauseImage } from './causes/entities/cause-image.entity';
@@ -47,5 +49,7 @@ import { Donation } from './donations/donation.entity';
     GalleryModule,
     DonationsModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
