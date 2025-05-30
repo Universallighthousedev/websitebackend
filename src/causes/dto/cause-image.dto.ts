@@ -1,4 +1,4 @@
-import { IsString, IsUrl, IsOptional, IsNumber, Min } from 'class-validator';
+import { IsString, IsUrl, IsOptional } from 'class-validator';
 
 export class CauseImageDto {
   @IsUrl()
@@ -7,9 +7,4 @@ export class CauseImageDto {
   @IsOptional()
   @IsString()
   alt?: string;
-
-  @IsOptional()
-  @IsNumber()
-  @Min(0)
-  order?: number;
 }

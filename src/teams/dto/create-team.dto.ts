@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsUrl, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateTeamDto {
   @IsString()
@@ -9,19 +9,7 @@ export class CreateTeamDto {
   @IsNotEmpty()
   description: string;
 
-  @IsUrl()
-  @IsNotEmpty()
-  imageUrl: string;
-
   @IsString()
-  @IsNotEmpty()
-  role: string;
-
-  @IsUrl()
   @IsOptional()
-  linkedinUrl?: string;
-
-  @IsUrl()
-  @IsOptional()
-  twitterUrl?: string;
+  imageUrl?: string;
 }
