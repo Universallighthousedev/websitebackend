@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   CreateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 import { Cause } from '../causes/cause.entity';
 
@@ -21,7 +22,11 @@ export class Donation {
   @Column({ nullable: true })
   donorEmail: string;
 
-  @ManyToOne(() => Cause, (cause) => cause.id, { onDelete: 'CASCADE' })
+  @Column()
+  causeId: string;
+
+  @ManyToOne(() => Cause, (cause) => cause.donations, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'causeId' })
   cause: Cause;
 
   @CreateDateColumn()

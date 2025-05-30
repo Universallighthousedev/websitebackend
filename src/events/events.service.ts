@@ -16,7 +16,7 @@ export class EventsService {
     return this.eventRepo.find();
   }
 
-  async findOne(id: number): Promise<Event> {
+  async findOne(id: string): Promise<Event> {
     const event = await this.eventRepo.findOne({ where: { id } });
     if (!event) {
       throw new NotFoundException(`Event with ID ${id} not found`);
@@ -29,13 +29,13 @@ export class EventsService {
     return this.eventRepo.save(event);
   }
 
-  async update(id: number, data: UpdateEventDto): Promise<Event> {
+  async update(id: string, data: UpdateEventDto): Promise<Event> {
     const event = await this.findOne(id);
     Object.assign(event, data);
     return this.eventRepo.save(event);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     const event = await this.findOne(id);
     await this.eventRepo.remove(event);
   }

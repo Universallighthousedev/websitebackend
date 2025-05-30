@@ -1,19 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Gallery {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
-  src: string;
+  imageUrl: string;
 
-  @Column()
-  alt: string;
+  @Column({ nullable: true })
+  caption: string;
 
-  @Column()
-  title: string;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @Column()
-  description: string;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

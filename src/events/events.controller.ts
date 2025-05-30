@@ -7,7 +7,6 @@ import {
   Param,
   Patch,
   Delete,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-events.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
@@ -22,7 +21,7 @@ export class EventsController {
   }
 
   @Get(':id')
-  getOne(@Param('id', ParseIntPipe) id: number) {
+  getOne(@Param('id') id: string) {
     return this.eventsService.findOne(id);
   }
 
@@ -32,12 +31,12 @@ export class EventsController {
   }
 
   @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() data: UpdateEventDto) {
+  update(@Param('id') id: string, @Body() data: UpdateEventDto) {
     return this.eventsService.update(id, data);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id') id: string) {
     return this.eventsService.remove(id);
   }
 }

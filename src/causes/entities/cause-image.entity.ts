@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   CreateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 import { Cause } from '../cause.entity';
 
@@ -18,12 +19,13 @@ export class CauseImage {
   @Column({ type: 'varchar', nullable: true })
   alt: string | null;
 
-  @Column({ default: 0 })
-  order: number;
+  @Column()
+  causeId: string;
 
   @ManyToOne(() => Cause, (cause: Cause) => cause.images, {
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'causeId' })
   cause: Cause;
 
   @CreateDateColumn()

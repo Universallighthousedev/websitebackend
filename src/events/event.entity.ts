@@ -1,28 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Event {
-  @PrimaryGeneratedColumn()
-  id: number; // Auto-generated ID
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   title: string;
 
-  @Column()
-  shortDescription: string;
-
-  @Column()
-  category: string;
-
-  @Column()
+  @Column('text')
   description: string;
 
+  @Column('timestamp')
+  date: Date;
+
   @Column()
+  location: string;
+
+  @Column({ nullable: true })
   imageUrl: string;
 
-  @Column()
-  time: string;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @Column({ type: 'date' })
-  date: string; // Format: 'YYYY-MM-DD'
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
