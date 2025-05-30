@@ -29,6 +29,10 @@ export class CreateCauseDto {
   description: string;
 
   @IsOptional()
+  @IsString()
+  imageUrl?: string;
+
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => CauseImageDto)
