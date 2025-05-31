@@ -33,7 +33,7 @@ import { Donation } from './donations/donation.entity';
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
         entities: [Cause, Event, Team, Gallery, Donation],
-        synchronize: configService.get<string>('NODE_ENV') === 'development',
+        synchronize: true, // Temporarily enabled for production to add missing contact column
         ssl:
           configService.get<string>('NODE_ENV') === 'production'
             ? { rejectUnauthorized: false }
