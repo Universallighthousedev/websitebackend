@@ -7,7 +7,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { CauseImage } from './entities/cause-image.entity';
 import { Donation } from '../donations/donation.entity';
 
 @Entity('causes')
@@ -32,12 +31,6 @@ export class Cause {
 
   @Column({ nullable: true })
   imageUrl: string;
-
-  @OneToMany(() => CauseImage, (image) => image.cause, {
-    cascade: true,
-    eager: true,
-  })
-  images: CauseImage[];
 
   @OneToMany(() => Donation, (donation) => donation.cause)
   donations: Donation[];

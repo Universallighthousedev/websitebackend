@@ -6,7 +6,6 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cause } from './cause.entity';
-import { CauseImage } from './entities/cause-image.entity';
 import { CreateCauseDto } from './dto/create-cause.dto';
 import { UpdateCauseDto } from './dto/update-cause.dto';
 
@@ -15,8 +14,6 @@ export class CausesService {
   constructor(
     @InjectRepository(Cause)
     private causesRepository: Repository<Cause>,
-    @InjectRepository(CauseImage)
-    private causeImagesRepository: Repository<CauseImage>,
   ) {}
 
   async create(createCauseDto: CreateCauseDto): Promise<Cause> {
@@ -30,22 +27,12 @@ export class CausesService {
       });
 
       const savedCause = await this.causesRepository.save(cause);
-
-      if (createCauseDto.images && createCauseDto.images.length > 0) {
-        const images = createCauseDto.images.map((imageDto) => {
-          const image = new CauseImage();
-          image.url = imageDto.url;
-          image.alt = imageDto.alt || null;
-          image.cause = savedCause;
-          return image;
-        });
-
-        await this.causeImagesRepository.save(images);
-      }
-
-      return this.findOne(savedCause.id);
+      return savedCause;
     } catch (error) {
-      throw new BadRequestException('Failed to create cause: ' + error.message);
+      throw new BadRequestException(
+        'Failed to create cause: ' +
+          (error instanceof Error ? error.message : 'Unknown error'),
+      );
     }
   }
 
@@ -65,7 +52,6 @@ export class CausesService {
     try {
       const cause = await this.causesRepository.findOne({
         where: { id },
-        relations: ['images'],
       });
 
       if (!cause) {
@@ -77,7 +63,10 @@ export class CausesService {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException('Failed to fetch cause: ' + error.message);
+      throw new BadRequestException(
+        'Failed to fetch cause: ' +
+          (error instanceof Error ? error.message : 'Unknown error'),
+      );
     }
   }
 
@@ -94,29 +83,15 @@ export class CausesService {
         imageUrl: updateCauseDto.imageUrl,
       });
 
-      // Handle images update if provided
-      if (updateCauseDto.images) {
-        // Remove existing images
-        await this.causeImagesRepository.delete({ cause: { id } });
-
-        // Create new images
-        const images = updateCauseDto.images.map((imageDto) => {
-          const image = new CauseImage();
-          image.url = imageDto.url;
-          image.alt = imageDto.alt || null;
-          image.cause = cause;
-          return image;
-        });
-
-        await this.causeImagesRepository.save(images);
-      }
-
       return await this.causesRepository.save(cause);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException('Failed to update cause: ' + error.message);
+      throw new BadRequestException(
+        'Failed to update cause: ' +
+          (error instanceof Error ? error.message : 'Unknown error'),
+      );
     }
   }
 
@@ -128,7 +103,10 @@ export class CausesService {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new BadRequestException('Failed to delete cause: ' + error.message);
+      throw new BadRequestException(
+        'Failed to delete cause: ' +
+          (error instanceof Error ? error.message : 'Unknown error'),
+      );
     }
   }
 }

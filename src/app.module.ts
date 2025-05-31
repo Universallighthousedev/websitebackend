@@ -5,7 +5,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CausesModule } from './causes/causes.module';
 import { Cause } from './causes/cause.entity';
-import { CauseImage } from './causes/entities/cause-image.entity';
 import { EventsModule } from './events/events.module';
 import { Event } from './events/event.entity';
 import { TeamsModule } from './teams/teams.module';
@@ -33,7 +32,7 @@ import { Donation } from './donations/donation.entity';
         username: configService.get<string>('DATABASE_USER'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [Cause, CauseImage, Event, Team, Gallery, Donation],
+        entities: [Cause, Event, Team, Gallery, Donation],
         synchronize: configService.get<string>('NODE_ENV') === 'development',
         ssl:
           configService.get<string>('NODE_ENV') === 'production'

@@ -4,12 +4,8 @@ import {
   IsNotEmpty,
   IsNumber,
   IsOptional,
-  IsArray,
   Min,
-  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
-import { CauseImageDto } from './cause-image.dto';
 
 export class CreateCauseDto {
   @IsString()
@@ -31,10 +27,4 @@ export class CreateCauseDto {
   @IsOptional()
   @IsString()
   imageUrl?: string;
-
-  @IsOptional()
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => CauseImageDto)
-  images?: CauseImageDto[];
 }

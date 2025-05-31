@@ -883,7 +883,7 @@ pm.collectionVariables.set("currentDate", new Date().toISOString());
   "title": "Clean Water Initiative",
   "description": "Bringing clean water to communities",
   "goal": 25000,
-  "raised": 8500,
+  "raised": "0.00",
   "category": "Water & Sanitation",
   "imageUrl": "https://example.com/image.jpg",
   "createdAt": "2024-12-31T10:30:00.000Z",
@@ -900,9 +900,11 @@ pm.collectionVariables.set("currentDate", new Date().toISOString());
     "title": "Clean Water Initiative",
     "description": "Bringing clean water to communities",
     "goal": 25000,
-    "raised": 8500,
+    "raised": "8500.00",
     "category": "Water & Sanitation",
-    "imageUrl": "https://example.com/image.jpg"
+    "imageUrl": "https://example.com/image.jpg",
+    "createdAt": "2024-12-31T10:30:00.000Z",
+    "updatedAt": "2024-12-31T10:30:00.000Z"
   }
 ]
 ```

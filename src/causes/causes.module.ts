@@ -5,10 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CausesService } from './causes.service';
 import { CausesController } from './causes.controller';
 import { Cause } from './cause.entity';
-import { CauseImage } from './entities/cause-image.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Cause, CauseImage])],
+  imports: [TypeOrmModule.forFeature([Cause])],
   controllers: [CausesController],
   providers: [CausesService],
 })
