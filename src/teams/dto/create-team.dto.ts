@@ -1,4 +1,10 @@
-import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsOptional,
+  IsEmail,
+  IsUrl,
+} from 'class-validator';
 
 export class CreateTeamDto {
   @IsString()
@@ -12,4 +18,24 @@ export class CreateTeamDto {
   @IsString()
   @IsOptional()
   imageUrl?: string;
+
+  @IsEmail()
+  @IsOptional()
+  email?: string;
+
+  @IsUrl()
+  @IsOptional()
+  facebook?: string;
+
+  @IsUrl()
+  @IsOptional()
+  tiktok?: string;
+
+  @IsUrl()
+  @IsOptional()
+  twitter?: string; // For X (formerly Twitter)
+
+  @IsUrl()
+  @IsOptional()
+  linkedin?: string;
 }

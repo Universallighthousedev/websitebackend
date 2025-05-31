@@ -20,6 +20,21 @@ export class Team {
   @Column({ nullable: true })
   imageUrl: string;
 
+  @Column({ nullable: true })
+  email?: string;
+
+  @Column({ nullable: true })
+  facebook?: string;
+
+  @Column({ nullable: true })
+  tiktok?: string;
+
+  @Column({ nullable: true })
+  twitter?: string; // For X (formerly Twitter)
+
+  @Column({ nullable: true })
+  linkedin?: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
