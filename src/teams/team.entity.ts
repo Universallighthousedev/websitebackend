@@ -21,6 +21,9 @@ export class Team {
   imageUrl: string;
 
   @Column({ nullable: true })
+  contact?: string;
+
+  @Column({ nullable: true })
   email?: string;
 
   @Column({ nullable: true })

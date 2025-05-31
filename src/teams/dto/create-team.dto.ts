@@ -19,6 +19,10 @@ export class CreateTeamDto {
   @IsOptional()
   imageUrl?: string;
 
+  @IsString()
+  @IsOptional()
+  contact?: string;
+
   @IsEmail()
   @IsOptional()
   email?: string;
