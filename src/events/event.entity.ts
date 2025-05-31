@@ -14,6 +14,9 @@ export class Event {
   @Column('timestamp')
   date: Date;
 
+  @Column({ type: 'timestamp', nullable: true })
+  endTime?: Date;
+
   @Column()
   location: string;
 

@@ -36,13 +36,28 @@ export class EventsService {
     const event = this.eventRepo.create({
       ...data,
       date: new Date(data.date),
+      endTime: data.endTime ? new Date(data.endTime) : undefined,
     });
     return this.eventRepo.save(event);
   }
 
   async update(id: string, data: UpdateEventDto): Promise<Event> {
     const event = await this.findOne(id);
-    Object.assign(event, data);
+
+    // Create update object with proper type conversions
+    const updateData: any = { ...data };
+    
+    // Handle date conversion if date is provided
+    if (data.date) {
+      updateData.date = new Date(data.date);
+    }
+
+    // Handle endTime conversion if endTime is provided
+    if (data.endTime) {
+      updateData.endTime = new Date(data.endTime);
+    }
+
+    Object.assign(event, updateData);
     return this.eventRepo.save(event);
   }
 
