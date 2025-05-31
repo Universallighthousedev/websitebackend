@@ -122,7 +122,7 @@
 ### POST /events - Create Event
 ```json
 {
-  "name": "Annual Charity Gala",
+  "title": "Annual Charity Gala",
   "description": "Join us for an elegant evening of dining, entertainment, and fundraising to support our clean water initiatives. The event will feature keynote speakers, live auctions, and networking opportunities.",
   "date": "2025-07-15T19:00:00.000Z",
   "endTime": "2025-07-15T23:00:00.000Z",
@@ -134,7 +134,7 @@
 ### PUT /events/:id - Update Event
 ```json
 {
-  "name": "Annual Charity Gala - Expanded Edition",
+  "title": "Annual Charity Gala - Expanded Edition",
   "description": "Join us for an elegant evening of dining, entertainment, and fundraising to support our clean water and education initiatives. This year features international keynote speakers, silent auctions, live entertainment, and exclusive networking sessions.",
   "date": "2025-07-15T18:30:00.000Z",
   "endTime": "2025-07-16T00:30:00.000Z",
@@ -146,7 +146,7 @@
 ### Additional Events Test Data
 ```json
 {
-  "name": "Community Workshop: Sustainable Living",
+  "title": "Community Workshop: Sustainable Living",
   "description": "Learn practical tips for sustainable living while supporting our environmental initiatives. Includes hands-on activities, expert presentations, and take-home resources.",
   "date": "2025-06-20T14:00:00.000Z",
   "endTime": "2025-06-20T17:00:00.000Z",
@@ -157,7 +157,7 @@
 
 ```json
 {
-  "name": "5K Run for Clean Water",
+  "title": "5K Run for Clean Water",
   "description": "Participate in our annual 5K run to raise funds for clean water projects. Registration includes race packet, t-shirt, and post-race refreshments.",
   "date": "2025-08-10T08:00:00.000Z",
   "endTime": "2025-08-10T11:00:00.000Z",
@@ -168,7 +168,7 @@
 
 ```json
 {
-  "name": "Youth Leadership Summit",
+  "title": "Youth Leadership Summit",
   "description": "Empowering the next generation of changemakers through workshops, mentorship, and collaborative projects focused on social impact.",
   "date": "2025-09-05T09:00:00.000Z",
   "endTime": "2025-09-05T17:00:00.000Z",

@@ -44,20 +44,14 @@ export class EventsService {
   async update(id: string, data: UpdateEventDto): Promise<Event> {
     const event = await this.findOne(id);
 
-    // Create update object with proper type conversions
-    const updateData: any = { ...data };
-    
-    // Handle date conversion if date is provided
-    if (data.date) {
-      updateData.date = new Date(data.date);
-    }
+    // Handle each field individually to avoid type issues
+    if (data.title) event.title = data.title;
+    if (data.description) event.description = data.description;
+    if (data.location) event.location = data.location;
+    if (data.imageUrl !== undefined) event.imageUrl = data.imageUrl;
+    if (data.date) event.date = new Date(data.date);
+    if (data.endTime) (event as any).endTime = new Date(data.endTime);
 
-    // Handle endTime conversion if endTime is provided
-    if (data.endTime) {
-      updateData.endTime = new Date(data.endTime);
-    }
-
-    Object.assign(event, updateData);
     return this.eventRepo.save(event);
   }
 
