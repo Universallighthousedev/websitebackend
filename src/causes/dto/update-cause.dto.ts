@@ -6,6 +6,7 @@ export class UpdateCauseDto extends PartialType(CreateCauseDto) {
   goal?: number;
   category?: string;
   description?: string;
+  imageUrl?: string;
   images?: Array<{
     url: string;
     alt?: string;

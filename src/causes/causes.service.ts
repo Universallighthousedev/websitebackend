@@ -26,6 +26,7 @@ export class CausesService {
         goal: createCauseDto.goal,
         category: createCauseDto.category,
         description: createCauseDto.description,
+        imageUrl: createCauseDto.imageUrl,
       });
 
       const savedCause = await this.causesRepository.save(cause);
@@ -90,6 +91,7 @@ export class CausesService {
         goal: updateCauseDto.goal,
         category: updateCauseDto.category,
         description: updateCauseDto.description,
+        imageUrl: updateCauseDto.imageUrl,
       });
 
       // Handle images update if provided
